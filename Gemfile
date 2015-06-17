@@ -43,3 +43,5 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
+gem 'bootstrap-sass',       '3.2.0.0'
+
