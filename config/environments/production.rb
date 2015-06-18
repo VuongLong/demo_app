@@ -64,17 +64,22 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = '<your heroku app>.herokuapp.com'
+  host = 'dry-caverns-9616.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
+
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
+    :enable_starttls_auto => true,
+    :address        => 'smtp.gmail.com',
+    :port           => 587,
+    :domain         => 'gmail.com',
     :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
-    :enable_starttls_auto => true
+    :user_name      => 'longisp17@gmail.com',
+    :password       => 'tunglong'
   }
+  config.action_mailer.raise_delivery_errors = true 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default :charset => "utf-8"
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -89,8 +94,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.raise_delivery_errors = true 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.default :charset => "utf-8"
+  
 end
