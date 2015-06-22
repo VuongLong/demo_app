@@ -67,17 +67,6 @@ Rails.application.configure do
   host = 'https://dry-caverns-9616.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
 
-  ActionMailer::Base.smtp_settings = {
-    :enable_starttls_auto => true,
-    :address        => 'smtp.gmail.com',
-    :port           => 587,
-    :domain         => 'dry-caverns-9616.herokuapp.com',
-    :authentication => :plain,
-    :user_name      => 'longisp17@gmail.com',
-    :password       => 'tunglong'
-  }
-
-
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true

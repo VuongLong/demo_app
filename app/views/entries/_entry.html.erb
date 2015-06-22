@@ -1,7 +1,6 @@
-<li id="entry-<%= entry.id %>">
+<li id="entry-<%= entry.id %>" class="col-md-8">
   <%= link_to gravatar_for(entry.user, size: 50), entry.user %>
   <span class="user"><%= link_to entry.user.name, entry.user %></span>
-
   <span class="title"><%= entry.title %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(entry.created_at) %> ago.
@@ -11,6 +10,21 @@
     <% end %>
   </span>
 
-  <span class="content"><%= entry.content %></span>
-  <%= image_tag entry.picture.url if entry.picture? %>
+   <div class="content"><%= entry.content %></div>
+   <%= image_tag entry.picture.url if entry.picture? %>
+   <br>
+   <div class="col-md-8">
+      <ol class="microposts">
+        <%= render entry.comments %>
+      </ol>
+      <%= link_to gravatar_for(current_user, size: 50), current_user %>
+      <%= form_for(@comment = Comment.new) do |f| %>
+      <div class="field">
+        <%= f.text_field :content, class: "form-control" %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :entry_id, value: entry.id %>
+        <%store_location%>
+      </div>
+    <% end %>
+  </div> 
 </li>
